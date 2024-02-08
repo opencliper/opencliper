@@ -1,0 +1,42 @@
+diff -Naur --exclude .git --exclude .github cvPlot.old/CvPlot/inc/CvPlot/gui/Window.h cvPlot/CvPlot/inc/CvPlot/gui/Window.h
+--- cvPlot.old/CvPlot/inc/CvPlot/gui/Window.h	2022-11-30 16:14:52.689738356 +0000
++++ cvPlot/CvPlot/inc/CvPlot/gui/Window.h	2022-11-30 15:37:19.942443606 +0000
+@@ -37,14 +37,18 @@
+     :_mouseAdapter(axes)
+     , _windowName(windowName) {
+ 
+-    if(valid()){
+-        cv::destroyWindow(windowName);
+-    }
+-    cv::namedWindow(windowName, cv::WINDOW_NORMAL | cv::WINDOW_FREERATIO);
+-    cv::resizeWindow(windowName, { cols,rows });
+-    axes.render(_mat, cv::Size(cols, rows));
+-    cv::imshow(windowName, _mat);
++    if(!valid()){
++        //cv::destroyWindow(windowName);
++	cv::namedWindow(windowName, cv::WINDOW_NORMAL | cv::WINDOW_FREERATIO);
++	cv::resizeWindow(windowName, { cols,rows });
++	axes.render(_mat, cv::Size(cols, rows));
++	cv::imshow(windowName, _mat);
+ 	setMouseCallback();
++    }
++    else {
++	axes.render(_mat);
++        update();
++    }
+ }
+ 
+ inline
+@@ -57,9 +61,9 @@
+ 
+ inline
+ Window::~Window() {
+-    if(valid()){
+-        cv::destroyWindow(_windowName);
+-    }
++    //if(valid()){
++    //    cv::destroyWindow(_windowName);
++    //}
+ }
+ 
+ inline

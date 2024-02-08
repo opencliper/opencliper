@@ -1,0 +1,6 @@
+[submodule "ismrmrd"]
+	path = ismrmrd
+	url = https://github.com/ismrmrd/ismrmrd.git
+[submodule "CLBlast"]
+	path = CLBlast
+	url = https://github.com/CNugteren/CLBlast.git

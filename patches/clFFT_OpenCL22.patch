@@ -1,0 +1,26 @@
+diff -Naru clFFT.old/src/include/clFFT.h clFFT/src/include/clFFT.h
+--- clFFT.old/src/include/clFFT.h	2020-11-04 17:25:30.709306715 +0000
++++ clFFT/src/include/clFFT.h	2020-11-04 17:28:03.022292881 +0000
+@@ -27,6 +27,9 @@
+ #if !defined( CLFFT_H )
+ #define CLFFT_H
+ 
++// cl.h will complain if CL_TARGET_OPENCL_VERSION is not defined beforehand
++#define CL_TARGET_OPENCL_VERSION 120
++
+ #if defined(__APPLE__) || defined(__MACOSX)
+ 	#include <OpenCL/cl.h>
+ #else
+diff -Naru clFFT.old/src/library/fft_binary_lookup.h clFFT/src/library/fft_binary_lookup.h
+--- clFFT.old/src/library/fft_binary_lookup.h	2020-11-04 17:22:08.778954712 +0000
++++ clFFT/src/library/fft_binary_lookup.h	2020-11-06 16:54:06.341110078 +0000
+@@ -17,6 +17,9 @@
+ #ifndef __CLFFT_CLFFT_BINARY_LOOKUP__
+ #define __CLFFT_CLFFT_BINARY_LOOKUP__
+ 
++// cl.h will complain if CL_TARGET_OPENCL_VERSION is not defined beforehand
++#define CL_TARGET_OPENCL_VERSION 120
++
+ #if defined(__APPLE__) || defined(__MACOSX)
+ #include <OpenCL/cl.h>
+ #else

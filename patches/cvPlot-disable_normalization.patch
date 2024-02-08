@@ -1,0 +1,16 @@
+diff -Naur -x .git -x .github cvPlot.old/CvPlot/inc/CvPlot/imp/Image.ipp cvPlot/CvPlot/inc/CvPlot/imp/Image.ipp
+--- cvPlot.old/CvPlot/inc/CvPlot/imp/Image.ipp	2022-11-29 12:00:58.872917737 +0000
++++ cvPlot/CvPlot/inc/CvPlot/imp/Image.ipp	2022-11-29 11:58:53.715329351 +0000
+@@ -24,8 +24,10 @@
+         mat1b.setTo(255, mat == maxVal);
+         return mat1b;
+     }
+-    const double alpha = 255.0 / (maxVal - minVal);
+-    const double beta = -minVal * alpha;
++    //const double alpha = 255.0 / (maxVal - minVal);
++    //const double beta = -minVal * alpha;
++    const double alpha = 255, beta = 0;
++
+     cv::Mat1b mat1b;
+     mat.convertTo(mat1b, mat1b.type(), alpha, beta);
+     return mat1b;

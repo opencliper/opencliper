@@ -1,0 +1,87 @@
+/*  OpenCLIPER -- OpenCL Image Processing and Reconstruction
+ * 
+ *  Copyright (C) 2018 Federico Simmross Wattenberg,
+ *                    Manuel Rodríguez Cayetano,
+ *                    Javier Royuela del Val,
+ *                    Elena Martín González,
+ *                    Elisa Moya Sáez,
+ *                    Marcos Martín Fernández and
+ *                    Carlos Alberola López
+ *
+ * This file is part of OpenCLIPER.
+ *
+ * OpenCLIPER is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; version 3 of the License.
+ *
+ * OpenCLIPER is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with OpenCLIPER; If not, see <http://www.gnu.org/licenses/>.
+ *
+ *
+ *  Contact:
+ *
+ *  Federico Simmross Wattenberg
+ *  E.T.S.I. Telecomunicación
+ *  Universidad de Valladolid
+ *  Paseo de Belén 15
+ *  47011 Valladolid, Spain.
+ *  fedsim@tel.uva.es
+ */
+
+REQUIREMENTS
+------------
+- GCC 5 or newer.
+
+- CMake (http://www.cmake.org). Available in Ubuntu repositories. Version 3.0 or newer should work.
+
+- libmatio (https://github.com/telehan/libmatio). Available in Ubuntu repositories.
+
+- OpenCV (https://opencv.org/). Available in Ubuntu repositories.
+
+- A functional OpenCL 1.2 implementation (we may support OpenCL 1.0 in the future, but not yet).
+    - For nVidia GPUs, it comes with the CUDA packages (https://developer.nvidia.com/cuda-downloads).
+    - For AMD GPUs and CPUs, you may use the proprietary driver "AMDGPU pro" (https://support.amd.com/en-us/kb-articles/Pages/Radeon-Software-for-Linux-Release-Notes.aspx) or the free alternative "ROCm" (https://rocm.github.io/).
+    - For Intel CPUs and GPUs, download their OpenCL driver (https://software.intel.com/en-us/articles/opencl-drivers).
+
+- OpenCL headers
+    Available from https://www.khronos.org/registry/OpenCL/ and Ubuntu package opencl-headers
+
+- rocFFT [Optional] (https://github.com/ROCmSoftwarePlatform/rocFFT).
+    - If you use the ROCm driver and libraries, you can try the rocFFT library as an alternative to clFFT. If HIP is available for your computing device and HIP is activated in the command line (-i flag), OpenCLIPER will use rocFFT instead of clFFT where applicable.
+
+BUILDING
+--------
+OpenCLIPER has been developed on Ubuntu 18.04 LTS.
+
+The build process is based on CMake, so just:
+
+mkdir build
+cd build
+cmake ..
+make [-j <num_jobs>]
+
+The Release build type is selected as default. To see lots of details and debug info, select the Debug build type with ccmake.
+
+RUNNING
+-------
+These executables are generated during the build process. Please refer to <executable> -h for command line arguments to each of them:
+
+build/examples/simpleExample: a simple example that negates an input image and show it in a window.
+build/examples/MRIRecon: reconstructs a fully-sampled slice from K-space data and sensitivity maps.
+build/examples/MRIReconSOS: reconstructs a fully-sampled slice from K-space using the Sum of Squares method.
+build/examples/hipExample: shows how OpenCLIPER data objects can be passed directly to HIP libraries (rocFFT).
+
+build/tests/OpenCLIPER_clinfo: our version of the standard clinfo program.
+build/tests/simpleMatlabTest: loads and saves data in various formats (Matlab among others).
+build/tests/simpleReadDimsAndKDataMatlabTest: loads a file in Matlab format and dumps it on the terminal.
+build/tests/MRIReconMatlabTest: same as examples/MRIRecon, but saves results in Matlab and PNG formats.
+build/tests/showTest: loads a complex-data video in matlab format and shows it in a window.
+
+build/tests/MRIReconEnd2EndTest: the compressed-sensing, motion-compensated, clinically viable, end to end reconstruction system.
+
+
