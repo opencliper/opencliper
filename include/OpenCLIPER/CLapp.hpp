@@ -99,9 +99,11 @@ typedef union {
 
 // opencl.hpp includes the | operator but not &
 // We need it to test for supported command queue properties
+/*
 inline cl::QueueProperties operator&(cl::QueueProperties lhs, cl::QueueProperties rhs) {
     return static_cast<cl::QueueProperties>(static_cast<cl_command_queue_properties>(lhs) & static_cast<cl_command_queue_properties>(rhs));
 }
+*/
 
 namespace OpenCLIPER {
 
